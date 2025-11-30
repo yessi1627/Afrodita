@@ -32,11 +32,34 @@ function mostrarProductos() {
 
 // Función 3:  Seleccionar un producto
 function seleccionarProducto() {
-    console.log("Aquí se permitirá seleccionar un producto");
+        let opcion = prompt(
+        "Ingresa el número del producto que deseas  comprar:"
+    );
+    opcion = Number(opcion);
+    if (isNaN(opcion)) {
+        alert("Debes ingresar un número válido.");
+        return;
+    }
+
+    if (opcion < 1 || opcion > productos.length) {
+        alert("No existe un producto con ese número.");
+        return;
+    }
+    // Obtener producto seleccionado
+    const productoElegido = productos[opcion - 1];
+
+    alert(
+        "Elegiste: " +
+        productoElegido.nombre +
+        "\nEl valor es de: $" +
+        productoElegido.precio
+    );
+    console.log("Producto seleccionado para tu compra:", productoElegido);
 }
 
 // Invocación inicial
 
 mostrarBienvenida()
 mostrarProductos()
+seleccionarProducto()
 

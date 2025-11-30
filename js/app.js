@@ -6,27 +6,33 @@ const productos = [
     {nombre: "Repolarizador trigo de la mañana", tipo: "capilar", precio:87000}
 ];
 
+
 // Función 1: mostrar mensaje de bienvenida
 function mostrarBienvenida() {
     alert(" Bienvenida a Afrodita \n Tu belleza merece lo mejor.");
 }
 
-// Función 2: mostrar los productos disponibles
+// Función 2: mostrar los productos disponiblres
 function mostrarProductos() {
-    console.log("Productos disponibles en Afrodita:");
-
-    for (let i = 0; i < productos.length; i++) {
-        console.log(
-            `${i + 1}. ${productos[i].nombre} | Tipo: ${productos[i].tipo} | Precio: $${productos[i].precio}`
-        );
-    }
-
+    console.clear();
+    console.log("Listado de productos disponibles:");
     console.log("-----------------------------------------------------");
+
+    const contenedor = document.getElementById("lista-productos");
+    contenedor.innerHTML = "";
+
+    productos.forEach((producto, index) => {
+        console.log(`${index + 1}. ${producto.nombre} - $${producto.precio}`);
+
+        const item = document.createElement("p");
+        item.textContent = `${index + 1}. ${producto.nombre} - $${producto.precio}`;
+        contenedor.appendChild(item);
+    });
 }
 
 // Función 3:  Seleccionar un producto
 function seleccionarProducto() {
-    console.log("Aquí se permitirá seleccionar un producto (lo haremos en el siguiente paso).");
+    console.log("Aquí se permitirá seleccionar un producto");
 }
 
 // Invocación inicial

@@ -1,4 +1,4 @@
-// Array vacio
+// Array de los productos
 const productos = [
     { nombre: "Shampoo Reparador DivineCurl", tipo: "capilar", precio: 38000 },
     { nombre: "Mascarilla Hidratante GoldenSkin", tipo: "piel", precio: 45000 },
@@ -8,12 +8,20 @@ const productos = [
 
 // Función 1: mostrar mensaje de bienvenida
 function mostrarBienvenida() {
-    alert(" Bienvenida a Afrodita \nTu belleza merece lo mejor.\nVamos a ver de que te antojas hoy.");
+    alert(" Bienvenida a Afrodita \n Tu belleza merece lo mejor.");
 }
 
 // Función 2: mostrar los productos disponibles
 function mostrarProductos() {
-    console.log(" Lista de productos disponibles (pronto se llenará)...");
+    console.log("Productos disponibles en Afrodita:");
+
+    for (let i = 0; i < productos.length; i++) {
+        console.log(
+            `${i + 1}. ${productos[i].nombre} | Tipo: ${productos[i].tipo} | Precio: $${productos[i].precio}`
+        );
+    }
+
+    console.log("-----------------------------------------------------");
 }
 
 // Función 3:  Seleccionar un producto
@@ -22,4 +30,7 @@ function seleccionarProducto() {
 }
 
 // Invocación inicial
-mostrarBienvenida();
+
+mostrarBienvenida()
+mostrarProductos()
+

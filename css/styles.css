@@ -1,0 +1,71 @@
+
+body {
+  padding-top: 80px; 
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.navbar-afrodita {
+  background-color: #fccde5;
+}
+
+.navbar-afrodita .navbar-brand {
+  font-size: 40px;
+  font-weight: 700;
+  color: #c94a76;
+  letter-spacing: 3px;
+}
+
+.navbar-afrodita .navbar-brand:hover {
+  color: #c94a76;
+}
+.navbar-afrodita .nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  margin-right: 40px; 
+}
+
+.navbar-afrodita .nav-link:hover {
+  color: #c94a76;
+}
+
+.btn-cart {
+  border: 1px solid #c94a76;
+  color: #c94a76;
+}
+
+.btn-cart:hover {
+  background-color: #a61e4d;
+  color: #fff;
+}
+
+.hero-afrodita img {
+  height: 900px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.carousel-caption h1,
+.carousel-caption h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.carousel-caption p {
+  font-size: 25px;
+}
+
+.btn-primary {
+  background-color: #ff7aa2;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #fccde5;
+  color: #000;
+}

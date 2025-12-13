@@ -63,9 +63,26 @@ body {
 .btn-primary {
   background-color: #ff7aa2;
   border: none;
+  color: #4e091e;
+  font-weight: 400;
+   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: #fccde5;
   color: #000;
+}
+.btn-afrodita {
+  border-color: #ff7aa2;
+  color: #4e091e;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-afrodita:hover {
+  background-color: #ff7aa2;
+  color: #ffffff;
+  border-color: #ff7aa2;
+  transform: translateY(-2px);
 }

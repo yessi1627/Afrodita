@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("checkout-carrito");
   const totalSpan = document.getElementById("checkout-total");
   const form = document.getElementById("checkout-form");
-  const confirmacion = document.getElementById("checkout-confirmacion");
 
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -36,11 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     totalSpan.textContent = total.toLocaleString();
   }
 
-  function limpiarCarrito() {
-    localStorage.removeItem("carrito");
-    carrito = [];
-  }
-
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -55,16 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Simulación de pago
-      form.classList.add("d-none");
-      contenedor.classList.add("d-none");
-      confirmacion.classList.remove("d-none");
-
-      limpiarCarrito();
-
-      if (typeof actualizarContadorCarrito === "function") {
-        actualizarContadorCarrito();
-      }
+      // Simulación de pago exitoso
+      window.location.href = "success.html";
     });
   }
 

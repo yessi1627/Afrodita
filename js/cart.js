@@ -1,29 +1,22 @@
-
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// función para guardar carrito
+// Guardar carrito
 function guardarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Función para actualizar contador del carrito
+// Actualizar contador del carrito
 function actualizarContadorCarrito() {
   const contador = document.getElementById("cart-count");
   if (!contador) return;
 
-  const totalItems = carrito.reduce(
-    (acc, item) => acc + item.cantidad,
-    0
-  );
-
+  const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
   contador.textContent = totalItems;
 }
 
-// Función para poder agregar producto al carrito
+// Agregar producto
 function agregarAlCarrito(producto) {
-  const productoExistente = carrito.find(
-    (item) => item.id === producto.id
-  );
+  const productoExistente = carrito.find((item) => item.id === producto.id);
 
   if (productoExistente) {
     productoExistente.cantidad++;
@@ -39,7 +32,48 @@ function agregarAlCarrito(producto) {
   renderizarCarrito();
 }
 
-// funcion de renderizado delk carrito en HTML
+// Aumentar cantidad
+function aumentarCantidad(id) {
+  const producto = carrito.find((item) => item.id === id);
+  if (producto) {
+    producto.cantidad++;
+    guardarCarrito();
+    actualizarContadorCarrito();
+    renderizarCarrito();
+  }
+}
+
+// Disminuir cantidad
+function disminuirCantidad(id) {
+  const producto = carrito.find((item) => item.id === id);
+  if (producto) {
+    producto.cantidad--;
+    if (producto.cantidad <= 0) {
+      carrito = carrito.filter((item) => item.id !== id);
+    }
+    guardarCarrito();
+    actualizarContadorCarrito();
+    renderizarCarrito();
+  }
+}
+
+// Eliminar producto
+function eliminarProducto(id) {
+  carrito = carrito.filter((item) => item.id !== id);
+  guardarCarrito();
+  actualizarContadorCarrito();
+  renderizarCarrito();
+}
+
+// Vaciar carrito
+function vaciarCarrito() {
+  carrito = [];
+  guardarCarrito();
+  actualizarContadorCarrito();
+  renderizarCarrito();
+}
+
+// Renderizar carrito
 function renderizarCarrito() {
   const contenedor = document.getElementById("carrito-container");
   const totalSpan = document.getElementById("carrito-total");
@@ -52,31 +86,39 @@ function renderizarCarrito() {
   carrito.forEach((producto) => {
     total += producto.precio * producto.cantidad;
 
-    const col = document.createElement("div");
-    col.className = "col-12";
+    const item = document.createElement("div");
+    item.className = "cart-item";
 
-    col.innerHTML = `
-      <div class="card shadow-sm">
-        <div class="card-body d-flex justify-content-between align-items-center">
-          <div>
-            <h6 class="mb-1">${producto.nombre}</h6>
-            <small>Cantidad: ${producto.cantidad}</small>
-          </div>
-          <div class="fw-bold">
-            $ ${(producto.precio * producto.cantidad).toLocaleString()}
-          </div>
-        </div>
+    item.innerHTML = `
+      <div class="cart-info">
+        <h5 class="cart-product-name">${producto.nombre}</h5>
+        <p class="cart-product-price">$ ${producto.precio.toLocaleString()}</p>
       </div>
+
+      <div class="cart-controls">
+        <button class="btn-qty" onclick="disminuirCantidad(${producto.id})">−</button>
+        <span class="cart-qty">${producto.cantidad}</span>
+        <button class="btn-qty" onclick="aumentarCantidad(${producto.id})">+</button>
+      </div>
+
+      <button class="btn-delete" onclick="eliminarProducto(${producto.id})">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     `;
 
-    contenedor.appendChild(col);
+    contenedor.appendChild(item);
   });
 
   totalSpan.textContent = total.toLocaleString();
 }
 
-// inicializar carrito al cargar
+// Inicializar
 document.addEventListener("DOMContentLoaded", () => {
   actualizarContadorCarrito();
   renderizarCarrito();
+
+  const btnVaciar = document.getElementById("vaciar-carrito");
+  if (btnVaciar) {
+    btnVaciar.addEventListener("click", vaciarCarrito);
+  }
 });
